@@ -13,7 +13,7 @@ env.hosts = ['35.231.144.101', '34.229.74.97']
 
 def do_pack():
     """ Creats a trgz archive """
-    time = datetime.datetime.now()
+    time = datetime.now()
     time_format = time.strftime("%Y%m%d%H%M%S")
     file_name = "web_static_{}".format(time_format)
     local("mkdir -p versions")
@@ -50,13 +50,13 @@ def do_deploy(archive_path):
 
     except Exception:
         return False
-    
-    def deploy():
-        """ deploy this """
 
-        deploy = do_pack()
+def deploy():
+    """ deploy this """
 
-        if not deploy:
-            return False
+    path = do_pack()
 
-        return do_deploy(deploy)
+    if path is None:
+        return False
+
+    return do_deploy(path)
