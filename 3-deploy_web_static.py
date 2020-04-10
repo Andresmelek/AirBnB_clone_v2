@@ -51,6 +51,7 @@ def do_deploy(archive_path):
     except Exception:
         return False
 
+
 def deploy():
     """ deploy this """
 
