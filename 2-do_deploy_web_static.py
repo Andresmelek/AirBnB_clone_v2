@@ -47,6 +47,7 @@ def do_deploy(archive_path):
         run("ln -s /data/web_static/releases/{}/ /data/web_static/current"
             .format(shortname))
         print("New version deployed!")
+        return True
 
     except Exception:
         return False
