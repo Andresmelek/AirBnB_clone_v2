@@ -40,7 +40,7 @@ def do_deploy(archive_path):
         run("mv /data/web_static/releases/{}/web_static/*\
                             /data/web_static/releases/{}/"
             .format(shortname, shortname))
-        run("rm /tmp/{}".format(my_name))
+        run("rm /tmp/{}".format(name))
         run("rm -fr /data/web_static/current")
         run("rm -fr /data/web_static/releases/{}/web_static"
             .format(shortname))
