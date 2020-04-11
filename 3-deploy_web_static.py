@@ -11,6 +11,7 @@ from os import path
 env.hosts = ['35.231.144.101', '34.229.74.97']
 archive_path = None
 
+
 def do_pack():
     """ Creats a trgz archive """
     time = datetime.now()
