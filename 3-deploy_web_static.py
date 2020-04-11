@@ -9,7 +9,7 @@ from fabric.api import env
 from os import path
 
 env.hosts = ['35.231.144.101', '34.229.74.97']
-
+archive_path = None
 
 def do_pack():
     """ Creats a trgz archive """
@@ -27,9 +27,6 @@ def do_pack():
 
 def do_deploy(archive_path):
     """ Deploys the file """
-    if not path.exists(archive_path):
-        return False
-
     try:
         name = archive_path[9:]
         shortname = archive_path[9:-4]
@@ -54,10 +51,9 @@ def do_deploy(archive_path):
 
 def deploy():
     """ deploy this """
-
-    path = do_pack()
-
-    if path is None:
+    global archive_path
+    if archive_path is None:
+        archive_path = do_pack()
+    if archive_path is None:
         return False
-
-    return do_deploy(path)
+    return do_deploy(archive_path)
