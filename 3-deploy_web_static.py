@@ -8,22 +8,23 @@ from fabric.operations import local, put, run
 from fabric.api import env
 from os import path
 
+
 env.hosts = ['35.231.144.101', '34.229.74.97']
 archive_path = None
 
 
 def do_pack():
     """ Creats a trgz archive """
-    time = datetime.now()
-    time_format = time.strftime("%Y%m%d%H%M%S")
-    file_name = "web_static_{}".format(time_format)
     local("mkdir -p versions")
-    full_file = local("tar -cvzf versions/{}.tgz web_static".format(file_name))
+    my_path = local("tar -zcvf versions/web_static_{}.tgz web_static".format(
+                        datetime.strftime(datetime.now(), "%Y%m%d%H%M%S")))
 
-    if full_file.failed:
+    my_path_name = "versions/web_static_{}.tgz".format(
+        datetime.strftime(datetime.now(), "%Y%m%d%H%M%S"))
+
+    if my_path.failed:
         return None
-    else:
-        return full_file
+    return my_path_name
 
 
 def do_deploy(archive_path):
@@ -45,6 +46,7 @@ def do_deploy(archive_path):
         run("ln -s /data/web_static/releases/{}/ /data/web_static/current"
             .format(shortname))
         print("New version deployed!")
+        return True
 
     except Exception:
         return False
