@@ -33,17 +33,17 @@ def do_deploy(archive_path):
         name = archive_path[9:]
         shortname = archive_path[9:-4]
         put(archive_path, "/tmp/{}".format(name))
-        run("mkdir -p /data/web_static/releases/{}/".format(shortname))
-        run("tar -xzf /tmp/{} -C /data/web_static/releases/{}/"
+        run("sudo mkdir -p /data/web_static/releases/{}/".format(shortname))
+        run("sudo tar -xzf /tmp/{} -C /data/web_static/releases/{}/"
             .format(name, shortname))
-        run("mv /data/web_static/releases/{}/web_static/*\
+        run("sudo mv /data/web_static/releases/{}/web_static/*\
                             /data/web_static/releases/{}/"
             .format(shortname, shortname))
-        run("rm /tmp/{}".format(name))
-        run("rm -fr /data/web_static/current")
-        run("rm -fr /data/web_static/releases/{}/web_static"
+        run("sudo rm /tmp/{}".format(name))
+        run("sudo rm -fr /data/web_static/current")
+        run("sudo rm -fr /data/web_static/releases/{}/web_static"
             .format(shortname))
-        run("ln -s /data/web_static/releases/{}/ /data/web_static/current"
+        run("sudo ln -s /data/web_static/releases/{}/ /data/web_static/current"
             .format(shortname))
         print("New version deployed!")
         return True
