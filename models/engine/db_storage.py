@@ -65,7 +65,6 @@ class DBStorage:
                                  expire_on_commit=False))
         self.__session = Session()
 
-
     def close(self):
         """dispose the session """
         self.__session.close()
