@@ -2,8 +2,7 @@
 """
 script that starts a Flask web application
 """
-from flask import Flask
-
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
@@ -51,7 +50,6 @@ def template(n):
 def template_odd(n):
     """ displays a template if integer  is odd or even"""
     return render_template('6-number_odd_or_even.html', n=n)
-
 
 
 if __name__ == '__main__':
