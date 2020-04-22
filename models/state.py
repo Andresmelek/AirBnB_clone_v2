@@ -23,6 +23,7 @@ class State(BaseModel, Base):
 
         @property
         def cities(self):
+            """getter cities"""
             city = models.storage.all(City)
             relation_list = []
             for key in city.values():
