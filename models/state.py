@@ -6,6 +6,8 @@ from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
 from models.city import City
 from os import getenv
+
+
 class State(BaseModel, Base):
     """This is the class for State
     Attributes:
