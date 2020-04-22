@@ -17,13 +17,13 @@ def states_list():
 
 @app.route('/states/<id>', strict_slashes=False)
 def state_id(id):
-    state_list = storage.all('State')
-    state_id = []
-    for states in state_list.values():
+    s_list = storage.all('State')
+    s_id = []
+    for states in s_list.values():
         if id == states.id:
-            state_id = states
+            s_id = states
 
-    return render_template('9-states.html', state_list=state_list, state_id=state_id)
+    return render_template('9-states.html', s_list=s_list, s_id=s_id)
 
 
 @app.teardown_appcontext
